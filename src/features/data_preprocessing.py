@@ -4,7 +4,7 @@ import joblib
 import numpy as np
 import tensorflow as tf
 import sys
-sys.path.append('D:/MLflow-test/kidney-disease-classification')  # Adjust this path as needed
+sys.path.append('D:/MLflow-test/brain-disease-classification')  # Adjust this path as needed
 
 from tensorflow import keras
 from tensorflow.keras.utils import to_categorical

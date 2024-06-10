@@ -10,8 +10,8 @@ stages:
       nfiles: 2870
     - path: .\src\data\make_dataset.py
       hash: md5
-      md5: 124d66da4314797380f65971bb5dcd12
-      size: 5474
+      md5: 2d54afef13b5bd0ad8cb56f4cdc39f3c
+      size: 5473
     params:
       params.yaml:
         make_dataset.image_size:
@@ -19,11 +19,11 @@ stages:
         - 200
         - 1
         make_dataset.random_state: 25
-        make_dataset.test_size: 0.25
+        make_dataset.test_size: 0.3
     outs:
     - path: .\data\interium
       hash: md5
-      md5: 2042135449d3d49155ea940d5c3aeb2d.dir
+      md5: 693a4b45d69c5520618f69f1c1d6e513.dir
       size: 114806258
       nfiles: 4
   data_preprocessing:
@@ -31,17 +31,17 @@ stages:
     deps:
     - path: .\data\interium
       hash: md5
-      md5: 2042135449d3d49155ea940d5c3aeb2d.dir
+      md5: 693a4b45d69c5520618f69f1c1d6e513.dir
       size: 114806258
       nfiles: 4
     - path: .\src\features\data_preprocessing.py
       hash: md5
-      md5: fd6c301c8c5bb2dcc50e5dc9138c7c22
-      size: 3551
+      md5: 2efa6f808baca320fa2946a4efaae6c3
+      size: 3550
     outs:
     - path: .\data\processed
       hash: md5
-      md5: 33b42d2261bea142c429dbbb86220d98.dir
+      md5: 99c84051dd2bb36a78c70ba7bc40e3d1.dir
       size: 918492804
       nfiles: 4
   train_model:
@@ -49,26 +49,26 @@ stages:
     deps:
     - path: .\data\processed
       hash: md5
-      md5: 33b42d2261bea142c429dbbb86220d98.dir
+      md5: 99c84051dd2bb36a78c70ba7bc40e3d1.dir
       size: 918492804
       nfiles: 4
     - path: .\src\models\train_model.py
       hash: md5
-      md5: fdbaff326db5a778368cbf305d199d3f
-      size: 4738
+      md5: 2b404f16b3ae852ab57eca27f616dfa9
+      size: 4594
     params:
       params.yaml:
         make_dataset.image_size:
         - 200
         - 200
         - 1
-        train_model.batch_size: 32
-        train_model.epochs: 3
-        train_model.model_name: CNNmodel
+        train_model.batch_size: 16
+        train_model.epochs: 1
+        train_model.model_name: CNNmodel2
     outs:
     - path: .\models
       hash: md5
-      md5: 99c18ec11f92e2133220777136749d1b.dir
+      md5: c28003dbe6c3451bc650831f56383e8a.dir
       size: 983340128
       nfiles: 1
   predict_model:
@@ -81,16 +81,16 @@ stages:
       nfiles: 394
     - path: .\models
       hash: md5
-      md5: 99c18ec11f92e2133220777136749d1b.dir
+      md5: c28003dbe6c3451bc650831f56383e8a.dir
       size: 983340128
       nfiles: 1
     - path: .\src\models\predict_model.py
       hash: md5
-      md5: a2fc6bef1e0697a11a1ce2ef545c0102
-      size: 4470
+      md5: 546a2704748ec4eac0a48a9cd0dc3549
+      size: 4471
     outs:
     - path: .\reports
       hash: md5
-      md5: 767d854f6e8fd9d0f90c5a9f32c5b2b2.dir
+      md5: 57fa4c53f1f28ae896fb28c6d12f3c74.dir
       size: 476
       nfiles: 1

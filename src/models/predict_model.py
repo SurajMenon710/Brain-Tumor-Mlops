@@ -3,7 +3,7 @@ import sys
 import cv2
 import datetime as dt
 import sys
-sys.path.append('D:/MLflow-test/kidney-disease-classification')  # Adjust this path as needed
+sys.path.append('D:/MLflow-test/brain-disease-classification')  # Adjust this path as needed
 
 import numpy as np
 import tensorflow as tf
@@ -27,7 +27,7 @@ predict_model_logger.set_log_level(level=logging.INFO)
 
 
 CLASSES = ['glioma_tumor','meningioma_tumor','no_tumor','pituitary_tumor']
-model_name ='CNNmodel.h5'
+model_name ='CNNmodel2.h5'
 
 def load_raw_image_data(input_dir_path : Path,classes : list,image_size:list) -> list:
     data = list()
@@ -96,7 +96,7 @@ def main():
     X_test = feature_scaling(X=X_test,X_name="X_test")
     y_test = target_ohe(y=y_test,num_classes=NUM_CLASSES,y_name="y_test")
 
-    model_name ='CNNmodel.h5'
+    model_name ='CNNmodel2.h5'
     model_path = root_path/'models'/model_name
     model = load_model(model_path)
     y_pred = predict_category(model=model,X=X_test)

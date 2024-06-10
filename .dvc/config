@@ -1,2 +1,2 @@
 [cache]
-    type = copy
+    type = hardlink

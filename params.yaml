@@ -1,12 +1,12 @@
 make_dataset:
   image_size: [200,200,1]
-  test_size: 0.25
+  test_size: 0.3
   random_state: 25
 
 train_model:
-  epochs: 3
-  batch_size: 32
-  model_name: "CNNmodel"
+  epochs: 1
+  batch_size: 16
+  model_name: "CNNmodel2"
 
 
 

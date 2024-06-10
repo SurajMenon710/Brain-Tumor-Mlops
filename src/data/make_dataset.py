@@ -1,7 +1,7 @@
 import logging
 import sys
 import sys
-sys.path.append('D:/MLflow-test/kidney-disease-classification')  # Adjust this path as needed
+sys.path.append('D:/MLflow-test/brain-disease-classification')  # Adjust this path as needed
 
 import cv2
 import joblib

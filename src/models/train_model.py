@@ -2,7 +2,7 @@ import logging
 import sys
 import cv2
 import sys
-sys.path.append('D:/MLflow-test/kidney-disease-classification')  # Adjust this path as needed
+sys.path.append('D:/MLflow-test/brain-disease-classification')  # Adjust this path as needed
 
 import numpy as np
 import tensorflow as tf
@@ -49,7 +49,6 @@ def tf_compile_model(model):
 
 def tf_train_model(model,X_train,y_train,batch_size:int,epochs:int,validation_data:tuple):
     model.fit(X_train,y_train,batch_size=batch_size ,epochs=epochs,validation_data=validation_data,verbose=1)
-    train_model_logger.save_logs(msg=f'Model has been trained successfully for {epochs} epochs and {batch_size} batch size',log_level="info")
     return model
 
 
