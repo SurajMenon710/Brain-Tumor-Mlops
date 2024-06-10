@@ -1,0 +1,96 @@
+schema: '2.0'
+stages:
+  make_dataset:
+    cmd: python .\src\data\make_dataset.py Training
+    deps:
+    - path: .\data\raw\Training
+      hash: md5
+      md5: 115ba59527aaaa7bb4d5009e3ef34067.dir
+      size: 79703413
+      nfiles: 2870
+    - path: .\src\data\make_dataset.py
+      hash: md5
+      md5: 124d66da4314797380f65971bb5dcd12
+      size: 5474
+    params:
+      params.yaml:
+        make_dataset.image_size:
+        - 200
+        - 200
+        - 1
+        make_dataset.random_state: 25
+        make_dataset.test_size: 0.25
+    outs:
+    - path: .\data\interium
+      hash: md5
+      md5: 2042135449d3d49155ea940d5c3aeb2d.dir
+      size: 114806258
+      nfiles: 4
+  data_preprocessing:
+    cmd: python .\src\features\data_preprocessing.py X_train y_train X_val y_val
+    deps:
+    - path: .\data\interium
+      hash: md5
+      md5: 2042135449d3d49155ea940d5c3aeb2d.dir
+      size: 114806258
+      nfiles: 4
+    - path: .\src\features\data_preprocessing.py
+      hash: md5
+      md5: fd6c301c8c5bb2dcc50e5dc9138c7c22
+      size: 3551
+    outs:
+    - path: .\data\processed
+      hash: md5
+      md5: 33b42d2261bea142c429dbbb86220d98.dir
+      size: 918492804
+      nfiles: 4
+  train_model:
+    cmd: python .\src\models\train_model.py .\data\processed
+    deps:
+    - path: .\data\processed
+      hash: md5
+      md5: 33b42d2261bea142c429dbbb86220d98.dir
+      size: 918492804
+      nfiles: 4
+    - path: .\src\models\train_model.py
+      hash: md5
+      md5: fdbaff326db5a778368cbf305d199d3f
+      size: 4738
+    params:
+      params.yaml:
+        make_dataset.image_size:
+        - 200
+        - 200
+        - 1
+        train_model.batch_size: 32
+        train_model.epochs: 3
+        train_model.model_name: CNNmodel
+    outs:
+    - path: .\models
+      hash: md5
+      md5: 99c18ec11f92e2133220777136749d1b.dir
+      size: 983340128
+      nfiles: 1
+  predict_model:
+    cmd: python .\src\models\predict_model.py .\data\raw\Testing
+    deps:
+    - path: .\data\raw\Testing
+      hash: md5
+      md5: 8b17d7ee8019891d6d308f570a6c2b2b.dir
+      size: 13375930
+      nfiles: 394
+    - path: .\models
+      hash: md5
+      md5: 99c18ec11f92e2133220777136749d1b.dir
+      size: 983340128
+      nfiles: 1
+    - path: .\src\models\predict_model.py
+      hash: md5
+      md5: a2fc6bef1e0697a11a1ce2ef545c0102
+      size: 4470
+    outs:
+    - path: .\reports
+      hash: md5
+      md5: 767d854f6e8fd9d0f90c5a9f32c5b2b2.dir
+      size: 476
+      nfiles: 1
