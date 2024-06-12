@@ -1,7 +1,7 @@
-kidney-disease-classification
+brain-tumor-classification
 ==============================
 
-End to end kidney-disease-classification using MLflow and DVC
+End to end brain-tumor-classification using DVC
 
 Project Organization
 ------------
